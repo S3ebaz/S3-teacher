@@ -1,1 +1,38 @@
-$(cat /tmp/lessons_40.json)
+[
+  {
+    "id": "mat1",
+    "semester": 1,
+    "title": "Matemáticas I",
+    "description": "Números reales, operaciones y ecuaciones lineales",
+    "questions": [
+      {"type": "multiple", "question": "Pregunta 1 de Matemáticas I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 0},
+      {"type": "truefalse", "question": "Pregunta 2 de Matemáticas I: esta afirmación es correcta.", "answer": true},
+      {"type": "fill", "question": "Pregunta 3 de Matemáticas I: completa ________.", "answer": "concepto3"},
+      {"type": "multiple", "question": "Pregunta 4 de Matemáticas I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 3},
+      {"type": "truefalse", "question": "Pregunta 5 de Matemáticas I: esta afirmación es correcta.", "answer": false},
+      {"type": "fill", "question": "Pregunta 6 de Matemáticas I: completa ________.", "answer": "concepto6"},
+      {"type": "multiple", "question": "Pregunta 7 de Matemáticas I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 2},
+      {"type": "truefalse", "question": "Pregunta 8 de Matemáticas I: esta afirmación es correcta.", "answer": true},
+      {"type": "fill", "question": "Pregunta 9 de Matemáticas I: completa ________.", "answer": "concepto9"},
+      {"type": "multiple", "question": "Pregunta 10 de Matemáticas I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 1}
+    ]
+  },
+  {
+    "id": "hist1",
+    "semester": 1,
+    "title": "Historia I",
+    "description": "México prehispánico y la Conquista",
+    "questions": [
+      {"type": "multiple", "question": "Pregunta 1 de Historia I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 0},
+      {"type": "truefalse", "question": "Pregunta 2 de Historia I: esta afirmación es correcta.", "answer": true},
+      {"type": "fill", "question": "Pregunta 3 de Historia I: completa ________.", "answer": "concepto3"},
+      {"type": "multiple", "question": "Pregunta 4 de Historia I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 3},
+      {"type": "truefalse", "question": "Pregunta 5 de Historia I: esta afirmación es correcta.", "answer": false},
+      {"type": "fill", "question": "Pregunta 6 de Historia I: completa ________.", "answer": "concepto6"},
+      {"type": "multiple", "question": "Pregunta 7 de Historia I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 2},
+      {"type": "truefalse", "question": "Pregunta 8 de Historia I: esta afirmación es correcta.", "answer": true},
+      {"type": "fill", "question": "Pregunta 9 de Historia I: completa ________.", "answer": "concepto9"},
+      {"type": "multiple", "question": "Pregunta 10 de Historia I: selecciona la opción correcta.", "options": ["Respuesta A", "Respuesta B", "Respuesta C", "Respuesta D"], "answer": 1}
+    ]
+  }
+]
