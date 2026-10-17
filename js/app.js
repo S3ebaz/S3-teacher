@@ -1,17 +1,17 @@
-// app.js - Lógica principal: navegación, streaks, offline
+// app.js - Lógica principal: navegación, streaks, offline, logros
 
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
 });
 
 function initApp() {
-  // Navegación
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const section = btn.id.replace('nav-', 'section-');
       showSection(section);
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      if (section === 'section-profile') renderAchievements();
     });
   });
 
@@ -24,7 +24,6 @@ function initApp() {
   document.getElementById('next-question').onclick = () => window.lessons.nextQuestion();
   document.getElementById('reset-progress').onclick = resetProgress;
 
-  // Cargar datos
   window.lessons.loadLessons();
   window.notebook.initNotebook();
   updateStreak();
@@ -48,7 +47,7 @@ function updateStreak() {
     if (last === yesterday.toDateString()) {
       streak++;
     } else if (last !== today) {
-      streak = 1; // reinicia si más de un día
+      streak = 1;
     }
     localStorage.setItem('streak', streak);
     localStorage.setItem('lastActivity', today);
@@ -61,12 +60,36 @@ function updateStreak() {
 function updateHomeStats() {
   const completed = JSON.parse(localStorage.getItem('completedModules') || '[]');
   document.getElementById('home-lessons').textContent = completed.length;
-  // Profile
   const profile = document.getElementById('profile-stats');
   profile.innerHTML = `
     <div class="stat-card"><h3>${localStorage.getItem('streak') || 0}</h3><p>Racha</p></div>
     <div class="stat-card"><h3>${completed.length}</h3><p>Módulos</p></div>
   `;
+}
+
+function getAchievements() {
+  const completed = JSON.parse(localStorage.getItem('completedModules') || '[]');
+  const streak = parseInt(localStorage.getItem('streak') || '0');
+  const achievements = [];
+
+  if (completed.length >= 1) achievements.push({name: "Primer paso", desc: "Completa tu primera lección", icon: "🎯"});
+  if (completed.length >= 5) achievements.push({name: "Estudiante constante", desc: "Completa 5 lecciones", icon: "📚"});
+  if (completed.length >= 10) achievements.push({name: "Maestro en formación", desc: "Completa 10 lecciones", icon: "🏆"});
+  if (streak >= 3) achievements.push({name: "Racha de fuego", desc: "3 días seguidos", icon: "🔥"});
+  if (streak >= 7) achievements.push({name: "Semana perfecta", desc: "7 días de racha", icon: "⭐"});
+
+  return achievements;
+}
+
+function renderAchievements() {
+  const container = document.getElementById('achievements-list');
+  if (!container) return;
+  const ach = getAchievements();
+  container.innerHTML = ach.length ? ach.map(a => `
+    <div class="note-item" style="background:#f0fff0; margin-bottom:8px;">
+      <div><strong>${a.icon} ${a.name}</strong><br><small>${a.desc}</small></div>
+    </div>
+  `).join('') : '<p>Aún no tienes logros. ¡Completa lecciones!</p>';
 }
 
 function resetProgress() {
@@ -86,7 +109,6 @@ function registerServiceWorker() {
   }
 }
 
-// Actualizar streak al interactuar
 ['click', 'input'].forEach(ev => {
   document.addEventListener(ev, () => {
     if (ev === 'click' || (ev === 'input' && document.activeElement.id === 'note-text')) {
