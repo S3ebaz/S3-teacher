@@ -12,7 +12,6 @@ async function loadLessons() {
     renderModules();
   } catch (e) {
     console.error('Error cargando lecciones:', e);
-    // Fallback offline
     lessonsData = JSON.parse(localStorage.getItem('cachedLessons') || '[]');
     if (lessonsData.length) renderModules();
   }
@@ -21,18 +20,35 @@ async function loadLessons() {
 function renderModules() {
   const list = document.getElementById('modules-list');
   list.innerHTML = '';
+
+  // Agrupar por semestre
+  const semesters = {};
   lessonsData.forEach(module => {
-    const card = document.createElement('div');
-    card.className = 'module-card';
-    card.innerHTML = `
-      <h3>${module.title}</h3>
-      <p>${module.description}</p>
-      <small>${module.questions.length} preguntas</small>
-    `;
-    card.onclick = () => startModule(module);
-    list.appendChild(card);
+    const sem = module.semester || 1;
+    if (!semesters[sem]) semesters[sem] = [];
+    semesters[sem].push(module);
   });
-  // Cache for offline
+
+  Object.keys(semesters).sort((a, b) => a - b).forEach(sem => {
+    const header = document.createElement('h3');
+    header.style.margin = '24px 0 12px';
+    header.style.color = 'var(--primary)';
+    header.textContent = `Semestre ${sem}`;
+    list.appendChild(header);
+
+    semesters[sem].forEach(module => {
+      const card = document.createElement('div');
+      card.className = 'module-card';
+      card.innerHTML = `
+        <h3>${module.title}</h3>
+        <p>${module.description}</p>
+        <small>${module.questions.length} preguntas</small>
+      `;
+      card.onclick = () => startModule(module);
+      list.appendChild(card);
+    });
+  });
+
   localStorage.setItem('cachedLessons', JSON.stringify(lessonsData));
 }
 
@@ -71,7 +87,6 @@ function showQuestion() {
   html += '</div>';
   area.innerHTML = html;
 
-  // Event listeners
   if (q.type === 'multiple' || q.type === 'truefalse') {
     area.querySelectorAll('.option').forEach(btn => {
       btn.onclick = () => checkAnswer(btn, q);
@@ -86,7 +101,7 @@ function showQuestion() {
 
 function checkAnswer(btn, q) {
   const options = document.querySelectorAll('.option');
-  options.forEach(o => o.onclick = null); // disable
+  options.forEach(o => o.onclick = null);
 
   let isCorrect = false;
   if (q.type === 'multiple') {
@@ -101,7 +116,6 @@ function checkAnswer(btn, q) {
     score++;
   } else {
     btn.classList.add('wrong');
-    // Show correct
     options.forEach(o => {
       if (q.type === 'multiple' && parseInt(o.dataset.index) === q.answer) o.classList.add('correct');
       if (q.type === 'truefalse' && ((o.dataset.value === 'true') === q.answer)) o.classList.add('correct');
@@ -164,9 +178,8 @@ function updateProgress(moduleId) {
     completed.push(moduleId);
     localStorage.setItem('completedModules', JSON.stringify(completed));
   }
-  updateStreak();
-  updateHomeStats();
+  if (typeof updateStreak === 'function') updateStreak();
+  if (typeof updateHomeStats === 'function') updateHomeStats();
 }
 
-// Exposed for app.js
 window.lessons = { loadLessons, nextQuestion };
