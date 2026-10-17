@@ -1,14 +1,14 @@
 :root {
-  --primary: #58cc02;
-  --primary-dark: #46a302;
-  --secondary: #1cb0f6;
-  --danger: #ff4b4b;
-  --bg: #f7f7f7;
-  --card: #ffffff;
-  --text: #3c3c3c;
-  --border: #e5e5e5;
+  --primary: #00e676;
+  --primary-dark: #00c853;
+  --secondary: #00b0ff;
+  --danger: #ff5252;
+  --bg: #0a0e17;
+  --card: rgba(20, 28, 45, 0.85);
+  --text: #e0e6ed;
+  --border: rgba(0, 230, 118, 0.3);
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -19,10 +19,27 @@
 
 body {
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 230, 118, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0, 176, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0e17 0%, #111827 100%);
+  background-attachment: fixed;
   color: var(--text);
   line-height: 1.5;
   min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 230, 118, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 118, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .container {
@@ -32,10 +49,10 @@ body {
 }
 
 header {
-  background: var(--primary);
-  color: white;
+  background: linear-gradient(90deg, #00c853, #00e676);
+  color: #0a0e17;
   padding: 16px 0;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 20px rgba(0, 230, 118, 0.3);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -52,6 +69,7 @@ header .container {
 header h1 {
   font-size: 1.5rem;
   font-weight: 800;
+  color: #0a0e17;
 }
 
 nav {
@@ -62,8 +80,8 @@ nav {
 
 .nav-btn {
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid #0a0e17;
+  color: #0a0e17;
   padding: 8px 16px;
   border-radius: 12px;
   cursor: pointer;
@@ -72,16 +90,17 @@ nav {
 }
 
 .nav-btn.active, .nav-btn:hover {
-  background: white;
-  color: var(--primary);
+  background: #0a0e17;
+  color: #00e676;
 }
 
 .streak {
   font-weight: 800;
   font-size: 1.2rem;
-  background: rgba(255,255,255,0.2);
+  background: rgba(10, 14, 23, 0.2);
   padding: 6px 12px;
   border-radius: 20px;
+  color: #0a0e17;
 }
 
 main {
@@ -115,6 +134,8 @@ main {
   border-radius: var(--radius);
   text-align: center;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
 }
 
 .stat-card h3 {
@@ -137,17 +158,18 @@ main {
 
 .btn.primary {
   background: var(--primary);
-  color: white;
+  color: #0a0e17;
 }
 
 .btn.primary:hover {
   background: var(--primary-dark);
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
 }
 
 .btn.secondary {
   background: var(--secondary);
-  color: white;
+  color: #0a0e17;
 }
 
 .btn.danger {
@@ -171,17 +193,20 @@ main {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 1px solid var(--border);
   transition: all 0.2s;
+  backdrop-filter: blur(8px);
 }
 
 .module-card:hover {
   border-color: var(--primary);
   transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2);
 }
 
 .module-card h3 {
   margin-bottom: 8px;
+  color: var(--primary);
 }
 
 #quiz-container {
@@ -190,6 +215,8 @@ main {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-top: 16px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
 }
 
 .question {
@@ -208,10 +235,11 @@ main {
   border: 2px solid var(--border);
   border-radius: 12px;
   cursor: pointer;
-  background: white;
+  background: rgba(20, 28, 45, 0.6);
   font-weight: 600;
   transition: all 0.2s;
   text-align: left;
+  color: var(--text);
 }
 
 .option:hover {
@@ -219,13 +247,13 @@ main {
 }
 
 .option.correct {
-  background: #d7ffb8;
+  background: rgba(0, 230, 118, 0.2);
   border-color: var(--primary);
   animation: pulse 0.5s;
 }
 
 .option.wrong {
-  background: #ffd7d7;
+  background: rgba(255, 82, 82, 0.2);
   border-color: var(--danger);
   animation: shake 0.4s;
 }
@@ -250,12 +278,12 @@ main {
 }
 
 .feedback.correct {
-  background: #d7ffb8;
-  color: var(--primary-dark);
+  background: rgba(0, 230, 118, 0.15);
+  color: var(--primary);
 }
 
 .feedback.wrong {
-  background: #ffd7d7;
+  background: rgba(255, 82, 82, 0.15);
   color: var(--danger);
 }
 
@@ -269,6 +297,8 @@ main {
   font-size: 1rem;
   resize: vertical;
   margin-bottom: 12px;
+  background: rgba(20, 28, 45, 0.6);
+  color: var(--text);
 }
 
 .file-upload {
@@ -291,6 +321,7 @@ main {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  border: 1px solid var(--border);
 }
 
 .file-item img {
@@ -308,7 +339,7 @@ main {
 footer {
   text-align: center;
   padding: 20px;
-  color: #888;
+  color: #6b7280;
   font-size: 0.9rem;
 }
 
