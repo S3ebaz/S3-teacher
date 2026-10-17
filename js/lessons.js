@@ -1,9 +1,11 @@
-// lessons.js - Carga de lecciones y lógica de quiz
+// lessons.js - Con lecciones de seguimiento
 
 let lessonsData = [];
 let currentModule = null;
 let currentQuestionIndex = 0;
 let score = 0;
+let wrongQuestions = [];
+let isFollowUp = false;
 
 async function loadLessons() {
   try {
@@ -21,7 +23,6 @@ function renderModules() {
   const list = document.getElementById('modules-list');
   list.innerHTML = '';
 
-  // Agrupar por semestre
   const semesters = {};
   lessonsData.forEach(module => {
     const sem = module.semester || 1;
@@ -52,10 +53,12 @@ function renderModules() {
   localStorage.setItem('cachedLessons', JSON.stringify(lessonsData));
 }
 
-function startModule(module) {
+function startModule(module, followUp = false) {
   currentModule = module;
   currentQuestionIndex = 0;
   score = 0;
+  wrongQuestions = [];
+  isFollowUp = followUp;
   document.getElementById('modules-list').classList.add('hidden');
   document.getElementById('quiz-container').classList.remove('hidden');
   showQuestion();
@@ -94,7 +97,7 @@ function showQuestion() {
   } else if (q.type === 'fill') {
     document.getElementById('submit-fill').onclick = () => {
       const input = document.getElementById('fill-input');
-      checkFillAnswer(input.value.trim().toLowerCase(), q.answer.toLowerCase(), input);
+      checkFillAnswer(input.value.trim().toLowerCase(), q.answer.toLowerCase(), input, q);
     };
   }
 }
@@ -116,6 +119,7 @@ function checkAnswer(btn, q) {
     score++;
   } else {
     btn.classList.add('wrong');
+    wrongQuestions.push(q);
     options.forEach(o => {
       if (q.type === 'multiple' && parseInt(o.dataset.index) === q.answer) o.classList.add('correct');
       if (q.type === 'truefalse' && ((o.dataset.value === 'true') === q.answer)) o.classList.add('correct');
@@ -125,7 +129,7 @@ function checkAnswer(btn, q) {
   document.getElementById('next-question').classList.remove('hidden');
 }
 
-function checkFillAnswer(userAns, correctAns, input) {
+function checkFillAnswer(userAns, correctAns, input, q) {
   const isCorrect = userAns === correctAns;
   if (isCorrect) {
     input.classList.add('correct');
@@ -133,6 +137,7 @@ function checkFillAnswer(userAns, correctAns, input) {
     score++;
   } else {
     input.classList.add('wrong');
+    wrongQuestions.push(q);
     showFeedback(false, `Correcto: ${correctAns}`);
   }
   document.getElementById('next-question').classList.remove('hidden');
@@ -157,10 +162,17 @@ function nextQuestion() {
 function finishModule() {
   const total = currentModule.questions.length;
   const percent = Math.round((score / total) * 100);
-  document.getElementById('question-area').innerHTML = `
+  let html = `
     <h3>¡Módulo completado!</h3>
     <p>Puntuación: ${score}/${total} (${percent}%)</p>
   `;
+
+  if (wrongQuestions.length > 0 && !isFollowUp) {
+    html += `<p style="color:#ff4b4b; margin-top:12px;">Te equivocaste en ${wrongQuestions.length} pregunta(s). ¿Quieres una lección de seguimiento?</p>`;
+    html += `<button id="followup-btn" class="btn primary" style="margin-top:12px;">Hacer lección de seguimiento</button>`;
+  }
+
+  document.getElementById('question-area').innerHTML = html;
   document.getElementById('feedback').textContent = '';
   document.getElementById('next-question').textContent = 'Volver a módulos';
   document.getElementById('next-question').onclick = () => {
@@ -170,6 +182,23 @@ function finishModule() {
     document.getElementById('next-question').onclick = nextQuestion;
     updateProgress(currentModule.id);
   };
+
+  const followBtn = document.getElementById('followup-btn');
+  if (followBtn) {
+    followBtn.onclick = () => startFollowUp();
+  }
+}
+
+function startFollowUp() {
+  if (wrongQuestions.length === 0) return;
+  const followModule = {
+    id: currentModule.id + '-follow',
+    title: currentModule.title + ' - Seguimiento',
+    description: 'Preguntas para reforzar lo que fallaste',
+    questions: wrongQuestions.map(q => ({...q})),
+    semester: currentModule.semester
+  };
+  startModule(followModule, true);
 }
 
 function updateProgress(moduleId) {
