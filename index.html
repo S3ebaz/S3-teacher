@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S3 Teacher - Aprende Interactivamente</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#58cc02">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>🦉 S3 Teacher</h1>
+      <nav>
+        <button id="nav-home" class="nav-btn active">Inicio</button>
+        <button id="nav-lessons" class="nav-btn">Lecciones</button>
+        <button id="nav-notebook" class="nav-btn">La Libreta</button>
+        <button id="nav-profile" class="nav-btn">Progreso</button>
+      </nav>
+      <div class="streak" id="streak-display">🔥 0</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Home -->
+    <section id="section-home" class="section active">
+      <h2>¡Bienvenido a S3 Teacher!</h2>
+      <p>Aprende cualquier materia de forma divertida, como en Duolingo. Mantén tu racha diaria y toma notas en La Libreta.</p>
+      <div class="stats">
+        <div class="stat-card">
+          <h3 id="home-streak">0</h3>
+          <p>Racha actual</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="home-lessons">0</h3>
+          <p>Lecciones completadas</p>
+        </div>
+      </div>
+      <button id="start-learning" class="btn primary">Empezar a aprender</button>
+    </section>
+
+    <!-- Lessons -->
+    <section id="section-lessons" class="section">
+      <h2>Módulos de Lecciones</h2>
+      <div id="modules-list"></div>
+      <div id="quiz-container" class="hidden">
+        <div id="question-area"></div>
+        <div id="feedback" class="feedback"></div>
+        <button id="next-question" class="btn primary hidden">Siguiente</button>
+      </div>
+    </section>
+
+    <!-- Notebook -->
+    <section id="section-notebook" class="section">
+      <h2>📓 La Libreta Inteligente</h2>
+      <div class="notebook-editor">
+        <textarea id="note-text" placeholder="Escribe tus apuntes del día aquí..."></textarea>
+        <button id="save-note" class="btn primary">Guardar nota</button>
+      </div>
+      <div class="file-upload">
+        <label for="file-input" class="btn secondary">📸 Subir fotos o PDFs</label>
+        <input type="file" id="file-input" multiple accept="image/*,.pdf" class="hidden">
+      </div>
+      <div id="notes-list"></div>
+      <div id="files-list"></div>
+    </section>
+
+    <!-- Profile / Progress -->
+    <section id="section-profile" class="section">
+      <h2>Tu Progreso</h2>
+      <div id="profile-stats"></div>
+      <button id="reset-progress" class="btn danger">Reiniciar progreso</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>S3 Teacher - Aprende sin límites • Offline-first</p>
+  </footer>
+
+  <script src="js/lessons.js"></script>
+  <script src="js/notebook.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

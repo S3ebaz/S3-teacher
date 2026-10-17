@@ -1,0 +1,71 @@
+[
+  {
+    "id": "bio-1",
+    "title": "Biología Básica",
+    "description": "Conceptos fundamentales de la vida",
+    "questions": [
+      {
+        "type": "multiple",
+        "question": "¿Cuál es la unidad básica de la vida?",
+        "options": ["Átomo", "Célula", "Molécula", "Tejido"],
+        "answer": 1
+      },
+      {
+        "type": "truefalse",
+        "question": "Las plantas realizan fotosíntesis.",
+        "answer": true
+      },
+      {
+        "type": "fill",
+        "question": "El proceso por el cual las plantas producen su alimento se llama ________.",
+        "answer": "fotosíntesis"
+      }
+    ]
+  },
+  {
+    "id": "math-1",
+    "title": "Matemáticas: Álgebra",
+    "description": "Ecuaciones simples",
+    "questions": [
+      {
+        "type": "multiple",
+        "question": "¿Cuánto es 2 + 2?",
+        "options": ["3", "4", "5", "6"],
+        "answer": 1
+      },
+      {
+        "type": "truefalse",
+        "question": "x + 3 = 7 implica que x = 4.",
+        "answer": true
+      },
+      {
+        "type": "fill",
+        "question": "El resultado de 5 × 6 es ________.",
+        "answer": "30"
+      }
+    ]
+  },
+  {
+    "id": "hist-1",
+    "title": "Historia de México",
+    "description": "Independencia y Revolución",
+    "questions": [
+      {
+        "type": "multiple",
+        "question": "¿En qué año comenzó la Independencia de México?",
+        "options": ["1810", "1821", "1910", "1521"],
+        "answer": 0
+      },
+      {
+        "type": "truefalse",
+        "question": "Miguel Hidalgo es conocido como el Padre de la Patria.",
+        "answer": true
+      },
+      {
+        "type": "fill",
+        "question": "La Revolución Mexicana inició en el año ________.",
+        "answer": "1910"
+      }
+    ]
+  }
+]
