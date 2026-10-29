@@ -1,1 +1,36 @@
-PLACEHOLDER_WILL_REPLACE
+[
+  {"id":"mat1","semester":1,"title":"Matemáticas I","description":"Números reales, operaciones y ecuaciones (nivel difícil UAQ)","questions":[
+    {"type":"multiple","question":"[Matemáticas I] Pregunta difícil 1 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":0},
+    {"type":"truefalse","question":"[Matemáticas I] Afirmación difícil 2 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Matemáticas I] Completa el concepto difícil 3: ________.","answer":"respuesta3"},
+    {"type":"multiple","question":"[Matemáticas I] Pregunta difícil 4 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":3},
+    {"type":"truefalse","question":"[Matemáticas I] Afirmación difícil 5 nivel prepa UAQ.","answer":false},
+    {"type":"fill","question":"[Matemáticas I] Completa el concepto difícil 6: ________.","answer":"respuesta6"},
+    {"type":"multiple","question":"[Matemáticas I] Pregunta difícil 7 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":2},
+    {"type":"truefalse","question":"[Matemáticas I] Afirmación difícil 8 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Matemáticas I] Completa el concepto difícil 9: ________.","answer":"respuesta9"},
+    {"type":"multiple","question":"[Matemáticas I] Pregunta difícil 10 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":1},
+    {"type":"truefalse","question":"[Matemáticas I] Afirmación difícil 11 nivel prepa UAQ.","answer":false},
+    {"type":"fill","question":"[Matemáticas I] Completa el concepto difícil 12: ________.","answer":"respuesta12"},
+    {"type":"multiple","question":"[Matemáticas I] Pregunta difícil 13 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":0},
+    {"type":"truefalse","question":"[Matemáticas I] Afirmación difícil 14 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Matemáticas I] Completa el concepto difícil 15: ________.","answer":"respuesta15"}
+  ]},
+  {"id":"hist1","semester":1,"title":"Historia I","description":"México prehispánico y Conquista (nivel difícil UAQ)","questions":[
+    {"type":"multiple","question":"[Historia I] Pregunta difícil 1 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":0},
+    {"type":"truefalse","question":"[Historia I] Afirmación difícil 2 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Historia I] Completa el concepto difícil 3: ________.","answer":"respuesta3"},
+    {"type":"multiple","question":"[Historia I] Pregunta difícil 4 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":3},
+    {"type":"truefalse","question":"[Historia I] Afirmación difícil 5 nivel prepa UAQ.","answer":false},
+    {"type":"fill","question":"[Historia I] Completa el concepto difícil 6: ________.","answer":"respuesta6"},
+    {"type":"multiple","question":"[Historia I] Pregunta difícil 7 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":2},
+    {"type":"truefalse","question":"[Historia I] Afirmación difícil 8 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Historia I] Completa el concepto difícil 9: ________.","answer":"respuesta9"},
+    {"type":"multiple","question":"[Historia I] Pregunta difícil 10 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":1},
+    {"type":"truefalse","question":"[Historia I] Afirmación difícil 11 nivel prepa UAQ.","answer":false},
+    {"type":"fill","question":"[Historia I] Completa el concepto difícil 12: ________.","answer":"respuesta12"},
+    {"type":"multiple","question":"[Historia I] Pregunta difícil 13 (UAQ): selecciona la correcta.","options":["Opción A","Opción B","Opción C","Opción D"],"answer":0},
+    {"type":"truefalse","question":"[Historia I] Afirmación difícil 14 nivel prepa UAQ.","answer":true},
+    {"type":"fill","question":"[Historia I] Completa el concepto difícil 15: ________.","answer":"respuesta15"}
+  ]}
+]
